@@ -20,6 +20,14 @@ export class BaseModel<T = any> {
   @IsOptional()
   @IsDate()
   updatedAt?: Date;
+
+  //   @IsOptional()
+  //   @IsBoolean()
+  //   isDeleted;               LATER
+
+  //   @IsOptional()
+  //   @IsBoolean()
+  //   isSuspended;
 }
 
 export interface IBaseInstanceMethods {
