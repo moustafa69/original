@@ -1,4 +1,4 @@
-import { SchemaDefinition, SchemaDefinitionType } from 'mongoose';
+import { Connection, SchemaDefinition, SchemaDefinitionType } from 'mongoose';
 import { BaseModel } from './base.type';
 
 export const BaseSchema: SchemaDefinition<SchemaDefinitionType<BaseModel>> = {
@@ -11,4 +11,14 @@ export const BaseSchema: SchemaDefinition<SchemaDefinitionType<BaseModel>> = {
     type: Date,
     default: null,
   },
+
+  //   isDeleted: {
+  //     type: Boolean,
+  //     default: false,
+  //   },
+
+  //   isSuspended: {
+  //     type: Boolean,
+  //     default: false,
+  //   },
 };
