@@ -7,6 +7,7 @@ import { IUserInstanceMethods, IUserModel, User } from './user.type';
 import { ActorSchema } from '../base';
 import { validateSchema } from 'src/common/helpers/mongoose-schema-validation.helper';
 import * as bcrypt from 'bcrypt';
+import { ModelNames } from '../../constants/model-names.enum';
 
 export const UserSchema = new Schema<User, IUserModel, IUserInstanceMethods>(
   {
@@ -65,7 +66,7 @@ export function userSchemaFactory(connection: Connection) {
     await this.deleteOne();
   };
 
-  const userModel = connection.model('User', UserSchema);
+  const userModel = connection.model(ModelNames.USER, UserSchema);
 
   return userModel;
 }
