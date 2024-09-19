@@ -1,0 +1,5 @@
+export enum ShopStatus {
+  ACTIVE = 'ACTIVE',
+  SUSPENDED = 'SUSPENDED',
+  PENDING_ACTIVATION = 'PENDING ACTIVATION',
+}
