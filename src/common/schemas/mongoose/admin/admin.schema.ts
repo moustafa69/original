@@ -4,6 +4,7 @@ import { BaseSchema } from '../base';
 import { ActorSchema } from '../base/actor/actor.schema';
 import { AdminStatus } from './admin.enum';
 import { validateSchema } from 'src/common/helpers/mongoose-schema-validation.helper';
+import { ModelNames } from '../../constants/model-names.enum';
 import * as bcrypt from 'bcrypt';
 
 export const AdminSchema = new Schema<
@@ -43,7 +44,7 @@ export function adminSchemaFactory(connection: Connection) {
     await this.deleteOne();
   };
 
-  const adminModel = connection.model('Admin', AdminSchema);
+  const adminModel = connection.model(ModelNames.ADMIN, AdminSchema);
 
   return adminModel;
 }
