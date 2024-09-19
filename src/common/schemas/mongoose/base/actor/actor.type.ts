@@ -26,13 +26,6 @@ export class Actor extends BaseModel {
   @IsString()
   lang?: string;
 
-  //   @IsOptional()
-  //   @IsBoolean()
-  //   isDeleted;               LATER
-
-  //   @IsOptional()
-  //   @IsBoolean()
-  //   isSuspended;
 }
 export interface IActorInstanceMethods extends IBaseInstanceMethods {
   comparePassword(password: string): Promise<Boolean>;
