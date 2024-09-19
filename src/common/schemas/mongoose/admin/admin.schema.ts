@@ -18,7 +18,11 @@ export const AdminSchema = new Schema<
     default: AdminStatus.ACTIVE,
   },
   ...ActorSchema,
-});
+},
+{
+  timestamps: true, // Optional, for tracking creation and modification times, remove dont remove b3den b2a
+},
+);
 
 export function adminSchemaFactory(connection: Connection) {
   AdminSchema.pre('validate', async function () {
