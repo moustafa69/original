@@ -5,9 +5,6 @@ import { Model, Types } from 'mongoose';
 import { PaymentInfo } from '../payment-info/payment-Info.type';
 
 export class Seller extends Actor {
-  @IsNumber()
-  rating: number;
-
   @IsInstance(Types.ObjectId)
   shop: Types.ObjectId;
 
