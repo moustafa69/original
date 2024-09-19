@@ -11,14 +11,10 @@ import { Model } from 'mongoose';
 import { Actor } from '../base/actor/actor.type';
 import { AdminStatus } from './admin.enum';
 
-export class Admin extends Actor {
+export class Admin extends Actor<Admin> {
   @IsEnum(AdminStatus)
   status?: AdminStatus;
 }
 
-export interface IAdminInstanceMethods extends IBaseInstanceMethods {
-  comparePassword(password: string): Promise<Boolean>;
-}
-
-export interface IAdminModel
-  extends Model<Admin, Record<string, unknown>, IAdminInstanceMethods> {}
+export interface IAdminInstanceMethods extends IBaseInstanceMethods {}
+export interface IAdminModel extends Model<Admin, Record<string, unknown>, IAdminInstanceMethods> {}
