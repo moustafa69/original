@@ -5,6 +5,7 @@ import { ActorSchema } from '../base/actor/actor.schema';
 import { AdminStatus } from './admin.enum';
 import { validateSchema } from 'src/common/helpers/mongoose-schema-validation.helper';
 import { ModelNames } from '../../constants/model-names.enum';
+import * as bcrypt from 'bcrypt';
 
 export const AdminSchema = new Schema<
   Admin,
@@ -17,19 +18,37 @@ export const AdminSchema = new Schema<
     default: AdminStatus.ACTIVE,
   },
   ...ActorSchema,
-});
+},
+{
+  timestamps: true, // Optional, for tracking creation and modification times, remove dont remove b3den b2a
+},
+);
 
-export function shopSchemaFactory(connection: Connection) {
+export function adminSchemaFactory(connection: Connection) {
   AdminSchema.pre('validate', async function () {
     await validateSchema(this, Admin);
   });
 
-  AdminSchema.methods.deleteDoc = async function (
+  AdminSchema.pre('save', async function () {
+    if (!this.isModified('password')) {
+      return;
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+  });
+
+  AdminSchema.methods.comparePassword = async function (
     this: HydratedDocument<Admin>,
+    password: string,
   ) {
+    return bcrypt.compare(password, this.password);
+  };
+
+  AdminSchema.methods.deleteDoc = async function (this: HydratedDocument<Admin>) {
     await this.deleteOne();
   };
 
-  const shopMdel = connection.model(ModelNames.ADMIN, AdminSchema);
-  return shopMdel;
+  const adminModel = connection.model(ModelNames.ADMIN, AdminSchema);
+
+  return adminModel;
 }

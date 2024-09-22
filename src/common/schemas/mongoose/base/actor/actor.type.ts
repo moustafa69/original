@@ -2,7 +2,12 @@ import { extname } from 'path';
 import { BaseModel, IBaseInstanceMethods } from '../base.type';
 import { Model } from 'mongoose';
 import { IsEmail, IsOptional, IsString } from 'class-validator';
-export class Actor extends BaseModel {
+export class Actor<T = any> extends BaseModel {
+  constructor(data: T) {
+    super(data);
+    Object.assign(this, data);
+  }
+  
   @IsString()
   @IsEmail()
   email;

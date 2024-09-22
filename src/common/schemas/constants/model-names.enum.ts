@@ -5,4 +5,5 @@ export enum ModelNames {
   REVIEW = 'Review',
   ADMIN = 'Admin',
   PRODUCT = 'Product',
+  USER = 'User',
 }
