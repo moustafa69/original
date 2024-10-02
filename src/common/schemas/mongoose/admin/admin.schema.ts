@@ -11,18 +11,21 @@ export const AdminSchema = new Schema<
   Admin,
   IAdminModel,
   IAdminInstanceMethods
->({
-  status: {
-    type: String,
-    enum: AdminStatus,
-    default: AdminStatus.ACTIVE,
+>(
+  {
+    status: {
+      type: String,
+      enum: AdminStatus,
+      default: AdminStatus.ACTIVE,
+    },
+    ...ActorSchema,
   },
-  ...ActorSchema,
-},
-{
-  timestamps: true, // Optional, for tracking creation and modification times, remove dont remove b3den b2a
-},
+  {
+    timestamps: true, // Optional, for tracking creation and modification times, remove dont remove b3den b2a
+  },
 );
+
+// AdminSchema.add(ActorSchema);
 
 export function adminSchemaFactory(connection: Connection) {
   AdminSchema.pre('validate', async function () {
