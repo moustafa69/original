@@ -2,7 +2,7 @@ import { IsEnum, IsInstance, IsNumber, IsOptional } from 'class-validator';
 import { Actor, IBaseInstanceMethods } from '../base';
 import { SellerStatus } from './seller.enum';
 import { Model, Types } from 'mongoose';
-import { PaymentInfo } from '../payment-info/payment-Info.type';
+// import { PaymentInfo } from '../payment-info/payment-Info.type';
 
 export class Seller extends Actor {
   @IsInstance(Types.ObjectId)
@@ -11,8 +11,8 @@ export class Seller extends Actor {
   @IsEnum(SellerStatus)
   status?: SellerStatus;
 
-  @IsOptional()
-  paymentInfo: PaymentInfo;
+  // @IsOptional()
+  // paymentInfo: PaymentInfo;
 }
 
 export interface ISellerInstanceMethods extends IBaseInstanceMethods {}

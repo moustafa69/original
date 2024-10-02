@@ -5,8 +5,6 @@ import { ShopStatus } from './shop-status-enum';
 import { Review } from '../review/review.type';
 import { BaseSchema } from '../base';
 import { validateSchema } from 'src/common/helpers/mongoose-schema-validation.helper';
-import { ShutdownSignal } from '@nestjs/common';
-import { ShopModule } from 'src/modules/shop/shop.module';
 
 export const ShopSchema = new Schema<Shop, IShopModel, IShopInstanceMethods>(
   {
