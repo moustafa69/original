@@ -8,7 +8,7 @@ import { Connection } from 'mongoose';
 import { AdminModule } from './modules/admin/admin.module';
 import { UserModule } from './modules/user/user.module';
 import { SellerModule } from './modules/seller/seller.module';
-import { ShopModule } from './shop/shop.module';
+import { ShopModule } from './modules/shop/shop.module';
 @Module({
   imports: [
     SellerModule,
