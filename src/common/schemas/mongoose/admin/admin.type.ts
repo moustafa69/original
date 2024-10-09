@@ -8,6 +8,8 @@ export class Admin extends Actor<Admin> {
   status?: AdminStatus;
 }
 
-export interface IAdminInstanceMethods extends IActorInstanceMethods {}
+export interface IAdminInstanceMethods extends IActorInstanceMethods {
+  comparePassword(password: string): Promise<Boolean>;
+}
 export interface IAdminModel
   extends Model<Admin, Record<string, unknown>, IAdminInstanceMethods> {}

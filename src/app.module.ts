@@ -9,6 +9,8 @@ import { AdminModule } from './modules/admin/admin.module';
 import { UserModule } from './modules/user/user.module';
 import { SellerModule } from './modules/seller/seller.module';
 import { ShopModule } from './modules/shop/shop.module';
+import { JwtModule } from '@nestjs/jwt';
+import { RedisModule, RedisModuleOptions } from '@liaoliaots/nestjs-redis';
 @Module({
   imports: [
     SellerModule,
@@ -29,6 +31,19 @@ import { ShopModule } from './modules/shop/shop.module';
           writeConcern: { w: 'majority' },
           connectionFactory: (connection: Connection) => {
             return connection;
+          },
+        };
+      },
+    }),
+    JwtModule.register({}),
+    RedisModule.forRootAsync({
+      imports: [EnvConfigModule],
+      inject: [AppConfig],
+      useFactory: async (appConfig: AppConfig): Promise<RedisModuleOptions> => {
+        return {
+          config: {
+            host: appConfig.REDIS_HOST ?? 'redis',
+            port: appConfig.REDIS_PORT,
           },
         };
       },
