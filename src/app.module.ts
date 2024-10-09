@@ -14,6 +14,7 @@ import { ShopModule } from './modules/shop/shop.module';
     SellerModule,
     AdminModule,
     UserModule,
+    ShopModule,
     EnvConfigModule.register(),
     ConfigModule.forRoot({
       isGlobal: true,
@@ -32,7 +33,6 @@ import { ShopModule } from './modules/shop/shop.module';
         };
       },
     }),
-    ShopModule,
   ],
   controllers: [],
   providers: [],
